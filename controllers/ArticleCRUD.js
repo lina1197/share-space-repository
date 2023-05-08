@@ -2,9 +2,9 @@ import Article from "../models/Article.js";
 
 export const createArticle = async (req, res) => {
   try {
-    const { title, content } = req.body;
+    const { title, content,category,keywords } = req.body;
     const author = req.user._id;
-    const article = new Article({ title, content, image: req.file.path,author });
+    const article = new Article({ title, content,category,keywords, image: req.file.path,author });
     await article.save();
     res.json(article);
   } catch (err) {
@@ -38,10 +38,14 @@ export const getArticleById = async (req, res) => {
 // update article by id
 export const updateArticle = async (req, res) => {
   try {
+    const { title, content,category,keywords } = req.body;
+        console.log(title);
+        console.log(content);
+
     const { id } = req.params;
-    const { title, content } = req.body;
     const author = req.user._id;
-    const updateData = { title, content, author };
+    const updateData = { title, content, author,category,keywords };
+    console.log(updateData);
     if (req.file) {
       updateData.image = req.file.path;
     }

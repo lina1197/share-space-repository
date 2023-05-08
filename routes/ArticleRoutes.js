@@ -5,6 +5,6 @@ const router = express.Router();
 router.get('/',getArticles);
 router.get('/:id',getArticleById);
 router.delete('/:id',deleteArticle);
-router.put('/',updateArticle);
+router.put('/:id',upload.single('image'),updateArticle);
 router.post('/',upload.single('image'),createArticle);
 export default router;
