@@ -22,6 +22,28 @@ export const getArticles = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+    // import jwt from "jsonwebtoken";
+
+export const getArticlesByUser = async (req, res) => {
+  
+  try { 
+
+  //  const secretKey = process.env.secretkey;
+  //   const accessToken = req.query.access_token;
+  //   console.log(accessToken);
+
+  //   const decodedToken = jwt.verify(accessToken, secretKey);
+  //   const userId = decodedToken.userId;
+    const author = req.user._id;
+
+    const articles = await Article.find({'author':author});
+    res.json(articles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+};
 // get article by id
 export const getArticleById = async (req, res) => {
   try {

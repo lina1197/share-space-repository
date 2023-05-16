@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 // styling
-import './App.css';
+import './Container.css';
 
 // components
 import Login from './Login';

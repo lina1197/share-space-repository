@@ -6,7 +6,7 @@ const articleSchema = new Schema({
   content: { type: String, required: true },
   image: {
    type: String,
-   required: true,
+  //  required: true,
   },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, category: { type: String, required: true },
   keywords: { type: [String], required: true },

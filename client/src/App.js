@@ -1,42 +1,33 @@
-// import logo from './logo.svg';
-// import './App.css';
 
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 // export default App;
 import React from 'react';
+import { Route,Routes } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
 
 // styling
-import './App.css';
+// import './App.css';
 
 // components 
 import Container from './Container';
-
+import Posts from './Posts';
+import Post from './Post';
+import DashboardNavbar from './DashboardNavbar';
 const App = () => {
   return (
-    <div className="App cfb">
-      <Container/>
-    </div>
+    <AuthProvider><div >
+      <Routes>
+                <Route path="/" element={ <div className="App cfb"><Container/></div> } />
+                                <Route path="/Dashboard" element={<div><DashboardNavbar/> <Posts/></div> } />
+
+        <Route path="/post/:id" element={<Post />} />
+
+
+    
+
+      </Routes>
+    </div></AuthProvider>
+    
   );
 }
 

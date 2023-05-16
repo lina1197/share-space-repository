@@ -33,8 +33,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// styling
-import './App.css';
+import './Container.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
