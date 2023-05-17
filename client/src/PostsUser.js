@@ -44,6 +44,8 @@ const PostsUser = () => {
               <th style={{ width: '40%' }}>Body</th>
               <th style={{ width: '10%' }}>Category</th>
               <th style={{ width: '15%' }}>keywords</th>
+                            <th style={{ width: '15%' }}>Author</th>
+
               <th style={{ width: '7.5%' }}>Update</th>
               <th style={{ width: '7.5%' }}>Delete</th>
             </tr>
@@ -55,6 +57,8 @@ const PostsUser = () => {
                 <td> {post.content} </td>
                                 <td> {post.category} </td>
                                                                 <td> {post.keywords} </td>
+                                                                                                                                                                                                <td> {post.author} </td>
+
 
 
                 <td>
