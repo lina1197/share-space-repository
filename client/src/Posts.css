@@ -10,7 +10,7 @@ min-height: 100vh;
 }
 
 .container {
-    margin: 20px;
+    margin: 80px 20px 20px 20px;
     position: relative;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 20px;

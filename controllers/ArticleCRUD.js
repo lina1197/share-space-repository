@@ -2,9 +2,11 @@ import Article from "../models/Article.js";
 
 export const createArticle = async (req, res) => {
   try {
+
+    
     const { title, content,category,keywords } = req.body;
     const author = req.user._id;
-    const article = new Article({ title, content,category,keywords, image: req.file.path,author });
+    const article = new Article({ title,content,category,keywords,author});
     await article.save();
     res.json(article);
   } catch (err) {
@@ -23,18 +25,12 @@ export const getArticles = async (req, res) => {
   }
 };
 
-    // import jwt from "jsonwebtoken";
 
 export const getArticlesByUser = async (req, res) => {
   
   try { 
 
-  //  const secretKey = process.env.secretkey;
-  //   const accessToken = req.query.access_token;
-  //   console.log(accessToken);
-
-  //   const decodedToken = jwt.verify(accessToken, secretKey);
-  //   const userId = decodedToken.userId;
+  
     const author = req.user._id;
 
     const articles = await Article.find({'author':author});

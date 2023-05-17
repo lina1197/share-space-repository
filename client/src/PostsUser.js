@@ -1,62 +1,51 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from './AuthContext';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Posts.css";
 
-const Posts = () => {
-    
+const PostsUser = () => {
   const navigate = useNavigate();
+    const { headers } = useContext(AuthContext);
+
   const [posts, setPosts] = useState([]);
 
-
-//   const fetchPosts = async () => {
-//     try {
-//       const token = localStorage.getItem("accessToken");
-//       const res = await axios.get("http://localhost:5000/articles", {
-//         params: {
-//           access_token: token
-//         }
-//       });
-//       setPosts(res.data);
-//     } catch (err) {
-//       console.error(err);
-//       // Handle error
-//     }
-//   };
-
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:5000/articles/getUserArticles");
+
+    const res = await axios.get("http://localhost:5000/articles/getUserArticles",{ headers });
     setPosts(res.data);
   };
 
   useEffect(() => {
     fetchPosts();
-
   }, []);
 
   const handleDelete = async (post) => {
+
     setPosts(posts.filter((p) => p._id !== post._id));
-    await axios.delete(`${"http://localhost:5000/articles"}/${post._id}`);
+    await axios.delete(`${"http://localhost:5000/articles"}/${post._id}`,{ headers });
   };
 
   return (
-    <div className="posts">
-      <div className="container">
+     <div className="posts" style={{display:"flex",flexDirection:"column"}}>
+      <div style={{textAlign:"center"}}><h1 >Your posts</h1></div>
+     
+      <div className="container container-fluid">
         <button
           onClick={() => navigate("/post/new")}
-          className="btn btn-primary mb-4"
+          className="btn btn-primary btn-sm mb-4"
         >
           New Post
         </button>
-        <table className="table">
+        <table className="table table-responsive">
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Body</th>
-              <th>Category</th>
-              <th>keywords</th>
-              <th>Update</th>
-              <th>Delete</th>
+              <th style={{ width: '20%' }}>Title</th>
+              <th style={{ width: '40%' }}>Body</th>
+              <th style={{ width: '10%' }}>Category</th>
+              <th style={{ width: '15%' }}>keywords</th>
+              <th style={{ width: '7.5%' }}>Update</th>
+              <th style={{ width: '7.5%' }}>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +60,7 @@ const Posts = () => {
                 <td>
                   <button
                     onClick={() => navigate(`/post/${post._id}`)}
-                    className="btn btn-primary"
+                    className="btn btn-primary btn-sm"
                   >
                     Update
                   </button>
@@ -79,7 +68,7 @@ const Posts = () => {
                 <td>
                   <button
                     onClick={() => handleDelete(post)}
-                    className="btn btn-danger"
+                    className="btn btn-danger btn-sm"
                   >
                     Delete
                   </button>
@@ -90,7 +79,8 @@ const Posts = () => {
         </table>
       </div>
     </div>
+
   );
 };
 
-export default Posts;
+export default PostsUser;

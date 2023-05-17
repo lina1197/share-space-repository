@@ -6,19 +6,20 @@ import { useParams, useNavigate } from "react-router-dom";
 const Post = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-    const { headers } = useContext(AuthContext); // Access the headers from the context
-
+  console.log(id);
+    const { headers,user } = useContext(AuthContext); // Access the headers from the context
+    console.log(headers);
+    console.log(user);
   const [post, setPost] = useState({
     title: "",
     content: "",
-    author:"6458f814855d1a1442f16fde",
     category:"",
     keywords:"",
 
   });
 
   useEffect(() => {
-    if (!id) return;
+    if (id==='new') return;
     const fetchPost = async () => {
 
       const { data } = await axios.get(`${"http://localhost:5000/articles"}/${id}`,{ headers });
@@ -26,6 +27,8 @@ const Post = () => {
     };
     fetchPost();
   }, []);
+
+   
 
   const handleChange = (e) => {
     const postClone = { ...post };
@@ -36,13 +39,16 @@ const Post = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (id === "new") {
+       
       await axios.post("http://localhost:5000/articles", post,{ headers });
       return navigate("/Dashboard");
     } else {
-      await axios.put(`${"http://localhost:5000/articles"}/${id}`, post,{ headers });
+      await axios.put("http://localhost:5000/articles"+"/"+id, post,{ headers });
       return navigate("/Dashboard");
     }
   };
+
+ 
 
   return (
     <div className="post__wrapper">

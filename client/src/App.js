@@ -1,16 +1,14 @@
 
 
-// export default App;
 import React from 'react';
 import { Route,Routes } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
 
-// styling
-// import './App.css';
 
-// components 
+
 import Container from './Container';
 import Posts from './Posts';
+import PostsUser from './PostsUser';
 import Post from './Post';
 import DashboardNavbar from './DashboardNavbar';
 const App = () => {
@@ -18,7 +16,7 @@ const App = () => {
     <AuthProvider><div >
       <Routes>
                 <Route path="/" element={ <div className="App cfb"><Container/></div> } />
-                                <Route path="/Dashboard" element={<div><DashboardNavbar/> <Posts/></div> } />
+                                <Route path="/Dashboard" element={<div><DashboardNavbar/> <PostsUser/> <Posts/></div> } />
 
         <Route path="/post/:id" element={<Post />} />
 
@@ -32,3 +30,4 @@ const App = () => {
 }
 
 export default App;
+

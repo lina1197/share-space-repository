@@ -50,9 +50,9 @@ export default function DashboardNavbar() {
       >
         <ul>
           <li>
-                        <button onClick={handleLogout}>Logout</button>
 
-            {/* <a href="/Logout">Logout</a> */}
+                        <button  onClick={handleLogout}>Logout</button>
+
           </li>
          
         </ul>
